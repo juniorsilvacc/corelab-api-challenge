@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
-import { User } from '../../../models/User';
-import { Vehicle } from '../../../models/Vehicle';
+import { User } from '../../../modules/users/models/User';
+import { Vehicle } from '../../../modules/vehicle/models/Vehicle';
+
 import { createUsers1656982804350 } from '../migrations/1656982804350-create-users';
 import { createVehicle1656988043492 } from '../migrations/1656988043492-create-vehicle';
 
