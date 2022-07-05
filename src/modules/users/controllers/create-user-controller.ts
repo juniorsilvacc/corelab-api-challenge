@@ -14,13 +14,13 @@ class CreateUserController {
       bcryptHashProvider,
     );
 
-    await createUserService.execute({
+    const user = await createUserService.execute({
       name,
       email,
       password,
     });
 
-    return response.status(201).json();
+    return response.status(201).json(user);
   }
 }
 

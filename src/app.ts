@@ -2,10 +2,12 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import { Error } from './config/errors/error';
 import { router } from './shared/infra/routes';
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use(router);
 
