@@ -6,6 +6,7 @@ interface IVehiclesRepository {
   findById(id: string): Promise<Vehicle | null>;
   findByPlate(plate: string): Promise<Vehicle | null>;
   findAll(): Promise<Vehicle[]>;
+  findVehiclesUser(user_id: string): Promise<Vehicle[]>;
 }
 
 export { IVehiclesRepository };

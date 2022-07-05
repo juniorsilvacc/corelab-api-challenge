@@ -11,6 +11,14 @@ class VehicleRepository implements IVehiclesRepository {
     this.repository = dataSource.getRepository(Vehicle);
   }
 
+  async findVehiclesUser(user_id: string): Promise<Vehicle[]> {
+    const vehicles = await this.repository.find({
+      where: { user_id },
+    });
+
+    return vehicles;
+  }
+
   async findAll(): Promise<Vehicle[]> {
     const vehicle = await this.repository.find();
 
