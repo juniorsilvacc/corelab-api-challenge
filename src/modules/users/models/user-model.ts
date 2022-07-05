@@ -1,8 +1,8 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
