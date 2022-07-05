@@ -1,16 +1,12 @@
-import { inject, injectable } from 'tsyringe';
 import { Error } from '../../../config/errors/Error';
-import { IBcryptHashProvider } from '../../../shared/providers/bcrypt/IBcryptHashProvider';
-import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
-import { IUsersRepository } from '../repositories/IUsersRepository';
+import { IBcryptHashProvider } from '../../../shared/providers/bcrypt/bcrypt-provider';
+import { ICreateUserDTO } from '../dtos/create-user-dto';
+import { IUsersRepository } from '../repositories/users-repository';
 
-@injectable()
 class CreateUserService {
   constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-    @inject('BcryptHashProvider')
-    private bcryptHashProvider: IBcryptHashProvider,
+    private readonly usersRepository: IUsersRepository,
+    private readonly bcryptHashProvider: IBcryptHashProvider,
   ) {}
 
   async execute({ name, email, password }: ICreateUserDTO): Promise<void> {

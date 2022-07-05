@@ -1,5 +1,5 @@
 import { compare, hash } from 'bcrypt';
-import { IBcryptHashProvider } from '../IBcryptHashProvider';
+import { IBcryptHashProvider } from '../bcrypt-provider';
 
 class BcryptHashProvider implements IBcryptHashProvider {
   generateHash(payload: string): Promise<string> {
