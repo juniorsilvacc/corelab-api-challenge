@@ -8,6 +8,7 @@ interface IVehiclesRepository {
   findAll(): Promise<Vehicle[]>;
   findVehiclesUser(user_id: string): Promise<Vehicle[]>;
   deleteVehicle(id: string): Promise<void>;
+  save(vehicle: Vehicle): Promise<Vehicle>;
 }
 
 export { IVehiclesRepository };
