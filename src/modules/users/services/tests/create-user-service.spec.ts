@@ -1,3 +1,4 @@
+import { Error } from '../../../../config/errors/error';
 import { BcryptHashProviderInMemory } from '../../../../shared/providers/bcrypt/in-memory/bcrypt-provider-in-memory';
 import { UsersRepositoryInMemory } from '../../repositories/in-memory/in-memory-user';
 import { CreateUserService } from '../create-user-service';
@@ -24,5 +25,21 @@ describe('Create User', () => {
     });
 
     expect(user).toHaveProperty('id');
+  });
+
+  it('shold not be able to create a new user with the same email', async () => {
+    await createUser.execute({
+      name: 'Test User',
+      email: 'teste@teste.com',
+      password: '123456',
+    });
+
+    expect(
+      createUser.execute({
+        name: 'Test User',
+        email: 'teste@teste.com',
+        password: '123456',
+      }),
+    ).rejects.toBeInstanceOf(Error);
   });
 });
