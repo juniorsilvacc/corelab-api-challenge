@@ -12,6 +12,10 @@ export class createVehicle1656988043492 implements MigrationInterface {
             isPrimary: true,
           },
           {
+            name: 'user_id',
+            type: 'uuid',
+          },
+          {
             name: 'name',
             type: 'varchar',
           },

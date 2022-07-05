@@ -11,7 +11,14 @@ class VehicleRepository implements IVehiclesRepository {
     this.repository = dataSource.getRepository(Vehicle);
   }
 
+  async findAll(): Promise<Vehicle[]> {
+    const vehicle = await this.repository.find();
+
+    return vehicle;
+  }
+
   async create({
+    user_id,
     name,
     description,
     plate,
@@ -20,6 +27,7 @@ class VehicleRepository implements IVehiclesRepository {
     price,
   }: ICreateVehicleDTO): Promise<void> {
     const vehicle = this.repository.create({
+      user_id,
       name,
       description,
       plate,

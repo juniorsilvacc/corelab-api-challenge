@@ -15,6 +15,9 @@ class Vehicle {
   name: string;
 
   @Column()
+  user_id: string;
+
+  @Column()
   description: string;
 
   @Column()

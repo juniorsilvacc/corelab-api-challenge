@@ -5,6 +5,7 @@ interface IVehiclesRepository {
   create(data: ICreateVehicleDTO): Promise<void>;
   findById(id: string): Promise<Vehicle | null>;
   findByPlate(plate: string): Promise<Vehicle | null>;
+  findAll(): Promise<Vehicle[]>;
 }
 
 export { IVehiclesRepository };
