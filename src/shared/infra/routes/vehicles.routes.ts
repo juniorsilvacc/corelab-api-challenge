@@ -5,6 +5,7 @@ import { DeleteVehicleController } from '../../../modules/vehicle/controllers/de
 import { FavoriteVehicleController } from '../../../modules/vehicle/controllers/favorite-vehicle-controller';
 import { GetVehiclesUserController } from '../../../modules/vehicle/controllers/get-veihcles-user-controller';
 import { NoFavoriteVehicleController } from '../../../modules/vehicle/controllers/no-favorite-vehicle-controller';
+import { UpdateVehicleController } from '../../../modules/vehicle/controllers/update-vehicle-controller';
 import ensure from '../middlewares/ensure';
 
 const vehiclesRouter = Router();
@@ -15,6 +16,7 @@ const getVehiclesUserController = new GetVehiclesUserController();
 const deleteVehicleController = new DeleteVehicleController();
 const favoriteVehicleController = new FavoriteVehicleController();
 const noFavoriteVehicleController = new NoFavoriteVehicleController();
+const updateVehicleController = new UpdateVehicleController();
 
 vehiclesRouter.post('/create', ensure, createVehicleController.handle);
 vehiclesRouter.get('/all', allVehiclesController.handle);
@@ -26,5 +28,7 @@ vehiclesRouter.put(
   ensure,
   noFavoriteVehicleController.handle,
 );
+
+vehiclesRouter.patch('/update/:id', ensure, updateVehicleController.handle);
 
 export { vehiclesRouter };
