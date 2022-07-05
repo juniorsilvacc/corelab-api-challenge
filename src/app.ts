@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import { Error } from './config/errors/Error';
 import { router } from './shared/infra/routes';
+import './shared/container';
 
 const app = express();
 
