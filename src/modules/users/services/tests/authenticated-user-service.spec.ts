@@ -1,3 +1,4 @@
+import { Error } from '../../../../config/errors/error';
 import { BcryptHashProviderInMemory } from '../../../../shared/providers/bcrypt/in-memory/bcrypt-provider-in-memory';
 import { UsersRepositoryInMemory } from '../../repositories/in-memory/in-memory-user';
 import { AuthenticatedUserService } from '../authenticated-user-service';
@@ -31,5 +32,29 @@ describe('Authenticated User', () => {
     expect(response).toHaveProperty('token');
     expect(response.name).toEqual(user.name);
     expect(response.email).toEqual(user.email);
+  });
+
+  it('should not be able to authenticate with non existent user', async () => {
+    expect(
+      authenticated.execute({
+        email: 'teste@teste.com',
+        password: '123456',
+      }),
+    ).rejects.toBeInstanceOf(Error);
+  });
+
+  it('should not be able to authenticate with wrong password', async () => {
+    await usersRepositoryInMemory.create({
+      name: 'Test User',
+      email: 'teste@teste.com',
+      password: '123456',
+    });
+
+    expect(
+      authenticated.execute({
+        email: 'teste@error.com',
+        password: 'error',
+      }),
+    ).rejects.toBeInstanceOf(Error);
   });
 });
