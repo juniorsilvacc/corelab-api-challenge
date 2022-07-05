@@ -1,4 +1,4 @@
-import { Error } from '../../../config/errors/Error';
+import { Error } from '../../../config/errors/error';
 import { IBcryptHashProvider } from '../../../shared/providers/bcrypt/bcrypt-provider';
 import { ICreateUserDTO } from '../dtos/create-user-dto';
 import { IUsersRepository } from '../repositories/users-repository';
