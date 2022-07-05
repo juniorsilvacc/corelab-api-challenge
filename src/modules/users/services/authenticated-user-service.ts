@@ -31,6 +31,7 @@ class AuthenticatedUserService {
       throw new Error('User or password incorrect');
     }
 
+    // Gerar jwt token
     const token = sign({}, auth.jwt.secret, {
       subject: user.id,
       expiresIn: auth.jwt.expiresIn,
