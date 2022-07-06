@@ -29,7 +29,7 @@ describe('Delete Vehicle', () => {
     expect(deleteVehicle).toBeUndefined();
   });
 
-  it('should not be able to delete a vehicle dost not exists', async () => {
+  it('should not be able to delete a vehicle does not exists', async () => {
     await expect(
       deleteVehicleService.execute({
         id: 'non-exists',

@@ -13,7 +13,7 @@ describe('Favorite Vehicle', () => {
     );
   });
 
-  it('should not be able to favorite a vehicle dost not exists', async () => {
+  it('should not be able to favorite a vehicle does not exists', async () => {
     await expect(
       favoriteVehicleService.execute({
         id: 'non-exists',
