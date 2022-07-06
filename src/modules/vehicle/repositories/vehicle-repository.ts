@@ -9,7 +9,6 @@ interface IVehiclesRepository {
   findVehiclesUser(user_id: string): Promise<Vehicle[]>;
   deleteVehicle(id: string): Promise<void>;
   save(vehicle: Vehicle): Promise<Vehicle>;
-
   filterVehicles(
     name?: string,
     plate?: string,
