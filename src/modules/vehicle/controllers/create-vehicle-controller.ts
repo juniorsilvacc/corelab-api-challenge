@@ -10,7 +10,7 @@ class CreateVehicleController {
     const vehiclesRepository = new VehicleRepository();
     const createVehicleService = new CreateVehicleService(vehiclesRepository);
 
-    await createVehicleService.execute({
+    const vehicle = await createVehicleService.execute({
       user_id: id,
       name,
       description,
@@ -20,7 +20,7 @@ class CreateVehicleController {
       price,
     });
 
-    return response.status(201).json();
+    return response.status(201).json(vehicle);
   }
 }
 

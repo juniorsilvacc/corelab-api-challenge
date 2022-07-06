@@ -75,7 +75,7 @@ class VehicleRepository implements IVehiclesRepository {
     year,
     color,
     price,
-  }: ICreateVehicleDTO): Promise<void> {
+  }: ICreateVehicleDTO): Promise<Vehicle> {
     const vehicle = this.repository.create({
       user_id,
       name,
@@ -87,7 +87,7 @@ class VehicleRepository implements IVehiclesRepository {
       price,
     });
 
-    await this.repository.save(vehicle);
+    return await this.repository.save(vehicle);
   }
 
   async findById(id: string): Promise<Vehicle | null> {

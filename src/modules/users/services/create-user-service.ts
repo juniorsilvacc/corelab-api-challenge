@@ -19,13 +19,11 @@ class CreateUserService {
 
     const hashPassword = await this.bcryptHashProvider.generateHash(password);
 
-    const create = await this.usersRepository.create({
+    return await this.usersRepository.create({
       name,
       email,
       password: hashPassword,
     });
-
-    return create;
   }
 }
 

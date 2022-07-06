@@ -1,6 +1,7 @@
 import { Error } from '../../../config/errors/error';
 import { ICreateVehicleDTO } from '../dtos/create-vehicle-dto';
 import { IVehiclesRepository } from '../repositories/vehicle-repository';
+import { Vehicle } from '../models/vehicle-model';
 
 class CreateVehicleService {
   constructor(private readonly vehiclesRepository: IVehiclesRepository) {}
@@ -13,14 +14,14 @@ class CreateVehicleService {
     year,
     color,
     price,
-  }: ICreateVehicleDTO): Promise<void> {
+  }: ICreateVehicleDTO): Promise<Vehicle> {
     const vehicle = await this.vehiclesRepository.findByPlate(plate);
 
     if (vehicle) {
       throw new Error('Vehicle already exists');
     }
 
-    await this.vehiclesRepository.create({
+    return await this.vehiclesRepository.create({
       user_id,
       name,
       description,
