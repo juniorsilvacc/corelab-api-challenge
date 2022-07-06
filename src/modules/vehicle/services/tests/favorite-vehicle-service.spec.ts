@@ -5,7 +5,7 @@ import { FavoriteVehicleService } from '../favorite-vehicle-service';
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
 let favoriteVehicleService: FavoriteVehicleService;
 
-describe('Delete Vehicle', () => {
+describe('Favorite Vehicle', () => {
   beforeEach(() => {
     vehicleRepositoryInMemory = new VehicleRepositoryInMemory();
     favoriteVehicleService = new FavoriteVehicleService(
