@@ -1,17 +1,27 @@
 import { Error } from '../../../../config/errors/error';
 import { VehicleRepositoryInMemory } from '../../repositories/in-memory/in-memory-vehicle';
-import { DeleteVehicleService } from '../delete-vehicle-service';
+import { FavoriteVehicleService } from '../favorite-vehicle-service';
 
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
-let deleteVehicleService: DeleteVehicleService;
+let favoriteVehicleService: FavoriteVehicleService;
 
 describe('Delete Vehicle', () => {
   beforeEach(() => {
     vehicleRepositoryInMemory = new VehicleRepositoryInMemory();
-    deleteVehicleService = new DeleteVehicleService(vehicleRepositoryInMemory);
+    favoriteVehicleService = new FavoriteVehicleService(
+      vehicleRepositoryInMemory,
+    );
   });
 
-  it('should be able to delete a vehicle', async () => {
+  it('should not be able to favorite a vehicle dost not exists', async () => {
+    await expect(
+      favoriteVehicleService.execute({
+        id: 'non-exists',
+      }),
+    ).rejects.toBeInstanceOf(Error);
+  });
+
+  it('shold be ablet to favorite a vehicle', async () => {
     const vehicle = await vehicleRepositoryInMemory.create({
       user_id: '2f860026-95cf-4942-8f01-9af157986a90',
       name: 'First Vehicle',
@@ -22,18 +32,10 @@ describe('Delete Vehicle', () => {
       price: 22000,
     });
 
-    const deleteVehicle = await vehicleRepositoryInMemory.deleteVehicle(
-      vehicle.id,
-    );
+    await favoriteVehicleService.execute({
+      id: vehicle.id,
+    });
 
-    expect(deleteVehicle).toBeUndefined();
-  });
-
-  it('should not be able to delete a vehicle dost not exists', async () => {
-    await expect(
-      deleteVehicleService.execute({
-        id: 'non-exists',
-      }),
-    ).rejects.toBeInstanceOf(Error);
+    expect(vehicle.isFavorite).toBe(true);
   });
 });
