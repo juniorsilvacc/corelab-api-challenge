@@ -36,7 +36,7 @@ describe('Create Vehicle', () => {
       price: 3200,
     });
 
-    expect(
+    await expect(
       createVehicle.execute({
         user_id: '2f860026-95cf-4942-8f01-9af157986a90',
         name: 'First Vehicle 2',

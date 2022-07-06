@@ -1,17 +1,18 @@
+import { Error } from '../../../../config/errors/error';
 import { VehicleRepositoryInMemory } from '../../repositories/in-memory/in-memory-vehicle';
-import { CreateVehicleService } from '../create-vehicle-service';
+import { DeleteVehicleService } from '../delete-vehicle-service';
 
 let vehicleRepositoryInMemory: VehicleRepositoryInMemory;
-let createVehicle: CreateVehicleService;
+let deleteVehicleService: DeleteVehicleService;
 
 describe('Delete Vehicle', () => {
   beforeEach(() => {
     vehicleRepositoryInMemory = new VehicleRepositoryInMemory();
-    createVehicle = new CreateVehicleService(vehicleRepositoryInMemory);
+    deleteVehicleService = new DeleteVehicleService(vehicleRepositoryInMemory);
   });
 
   it('should be able to delete a vehicle', async () => {
-    const vehicle = await createVehicle.execute({
+    const vehicle = await vehicleRepositoryInMemory.create({
       user_id: '2f860026-95cf-4942-8f01-9af157986a90',
       name: 'First Vehicle',
       description: 'This is a description of first vehicle',
@@ -26,5 +27,13 @@ describe('Delete Vehicle', () => {
     );
 
     expect(deleteVehicle).toBeUndefined();
+  });
+
+  it('should not be able to delete a vehicle dost not exists', async () => {
+    expect(
+      deleteVehicleService.execute({
+        id: 'non-exists',
+      }),
+    ).rejects.toBeInstanceOf(Error);
   });
 });
