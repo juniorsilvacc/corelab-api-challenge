@@ -1,3 +1,4 @@
+import { Error } from '../../../../config/errors/error';
 import { UsersRepositoryInMemory } from '../../repositories/in-memory/in-memory-user';
 import { DetailsUserService } from '../details-user-service';
 
@@ -22,5 +23,13 @@ describe('Details User', () => {
     });
 
     expect(details).toBe(user);
+  });
+
+  it('should not be able to details a user does not exists', async () => {
+    await expect(
+      detailsUserService.execute({
+        user_id: 'non-exists',
+      }),
+    ).rejects.toBeInstanceOf(Error);
   });
 });
