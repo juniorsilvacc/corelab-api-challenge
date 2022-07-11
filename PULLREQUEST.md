@@ -1,6 +1,43 @@
-## Estrutura
+#
 
-A estrutura contém a pasta modules que são divididas pelas entidades users e vehicle, sendo os controllers, dtos, models, repositories e services. Shared é a parte que é compartilhada que nela contém os providers e infra, o providers são funções isoladas, com isso o isolamento do bcrypt(método de criptografia hash). A parte de infra está as subpastas connection, middlwares e routes. A parte de config é onde ficaram as configurações do JWT e AppErros.
+## Estrutura do projeto
+
+    src
+      ├── @types/ 
+      ├── config/
+        ├ errors/
+      ├── modules/
+        ├─ users/
+            ├ controllers/
+            ├ dtos/
+            ├ models/
+            ├─ repositories/
+                ├ implementations/
+                ├ in-memory/
+            ├─ services/
+                ├ tests/
+        ├─ vehicles/
+            ├ controllers/
+            ├ dtos/
+            ├ models/
+            ├─ repositories/
+                ├ implementations/
+                ├ in-memory/
+            ├─ services/
+                ├ tests/
+      ├── shared/
+        ├─ infra/
+            ├─ connection/
+                ├ migrations/
+                ├ typeorm/
+            ├ middlewares/
+            ├ routes/
+        ├─ providers/
+            ├ bcrypt/
+      ├ app.ts  
+      └ server.ts     
+
+#
 
 ## Funcionalidades do Sistema
 
